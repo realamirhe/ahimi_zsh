@@ -55,6 +55,13 @@ alias gitrmD='git branch --merged | egrep -v "(^\*|master|main|dev)" | xargs git
 ##   # If you are inside /project/src/utils, it will take you to /project
 alias cdr='cd $(git rev-parse --show-toplevel)'
 
+##
+## @alias no
+## @description Run a command without zsh autocorrection (prevents zsh from suggesting corrections).
+## @example
+##   no pnpm storybook
+##   Runs 'pnpm storybook' without prompting: 'zsh correct 'storybook' to '.storybook' [nyae]?'
+alias no="nocorrect"
 
 ##
 ## @function gitclone
