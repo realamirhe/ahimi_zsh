@@ -28,14 +28,34 @@ alias gc='git checkout'
 alias gl='git log --decorate --oneline --graph'
 
 ##
-## @alias gitrm
+## @alias gitrmm
 ## @description Safely remove all fully merged local branches except master, main, and dev.
 ## @example
-##   gitrm
+##   gitrmm
 ##   # Removes merged branches:
 ##   #   branch-old -> deleted
 ##   #   feature-x -> deleted
-alias gitrm='git branch --merged | egrep -v "(^\*|master|main|dev)" | xargs git branch -d'
+alias gitrmm='git branch --merged | egrep -v "(^\*|master|main|dev)" | xargs git branch -d'
+
+##
+## @alias gitrm
+## @description Interactively select a local git branch and force-delete it.
+## The current branch is included, so use with care.
+## Uses fzf for selection.
+## @example
+##   gitrm
+##   # Shows a fuzzy list of local branches and deletes the selected one with -D
+alias gitrm='no git branch --format="%(refname:short)" | fzf --prompt="Force delete branch > " | xargs -r git branch -D'
+
+##
+## @alias gb
+## @description Interactively switch to another local git branch.
+## The currently checked-out branch is excluded from the list.
+## Uses fzf for selection.
+## @example
+##   gb
+##   # Shows a fuzzy list of local branches (excluding current) and switches to the selected one
+alias gb='git branch --format="%(refname:short)" | grep -v "$(git branch --show-current)" | fzf --prompt="Select branch > " | xargs -r git switch'
 
 ##
 ## @alias gitrmD
