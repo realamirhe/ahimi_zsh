@@ -1,4 +1,12 @@
 ##
+## @alias no
+## @description Run a command without zsh autocorrection (prevents zsh from suggesting corrections).
+## @example
+##   no pnpm storybook
+##   Runs 'pnpm storybook' without prompting: 'zsh correct 'storybook' to '.storybook' [nyae]?'
+alias no="nocorrect"
+
+##
 ## @alias gp
 ## @description Pull the latest changes from the current branch's remote tracking branch.
 ## @example
@@ -45,7 +53,7 @@ alias gitrmm='git branch --merged | egrep -v "(^\*|master|main|dev)" | xargs git
 ## @example
 ##   gitrm
 ##   # Shows a fuzzy list of local branches and deletes the selected one with -D
-alias gitrm='no git branch --format="%(refname:short)" | fzf --prompt="Force delete branch > " | xargs -r git branch -D'
+alias gitrm='no git branch --format="%(refname:short)" | fzf --prompt="Force delete branch > " --height=60% --reverse | xargs -r git branch -D'
 
 ##
 ## @alias gb
@@ -75,13 +83,6 @@ alias gitrmD='git branch --merged | egrep -v "(^\*|master|main|dev)" | xargs git
 ##   # If you are inside /project/src/utils, it will take you to /project
 alias cdr='cd $(git rev-parse --show-toplevel)'
 
-##
-## @alias no
-## @description Run a command without zsh autocorrection (prevents zsh from suggesting corrections).
-## @example
-##   no pnpm storybook
-##   Runs 'pnpm storybook' without prompting: 'zsh correct 'storybook' to '.storybook' [nyae]?'
-alias no="nocorrect"
 
 ##
 ## @function gitclone
