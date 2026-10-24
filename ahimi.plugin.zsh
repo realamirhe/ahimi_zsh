@@ -47,13 +47,14 @@ alias gitrmm='git branch --merged | egrep -v "(^\*|master|main|dev)" | xargs git
 
 ##
 ## @alias gitrm
-## @description Interactively select a local git branch and force-delete it.
+## @description Interactively select a local git branchs and force-delete it.
 ## The current branch is included, so use with care.
 ## Uses fzf for selection.
+## Tab: select multiple branches. Enter: delete. Esc: cancel.
 ## @example
 ##   gitrm
 ##   # Shows a fuzzy list of local branches and deletes the selected one with -D
-alias gitrm='no git branch --format="%(refname:short)" | fzf --prompt="Force delete branch > " --height=60% --reverse | xargs -r git branch -D'
+alias gitrm='no git branch --format="%(refname:short)" | fzf --multi --prompt="Force delete branches > " --height=60% --reverse | xargs -r git branch -D'
 
 ##
 ## @alias gb
